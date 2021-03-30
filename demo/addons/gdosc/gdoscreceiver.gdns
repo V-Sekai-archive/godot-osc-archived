@@ -7,4 +7,3 @@
 resource_name = "oscreceiver"
 class_name = "oscreceiver"
 library = ExtResource( 1 )
-_sections_unfolded = [ "Resource" ]

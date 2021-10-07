@@ -1,0 +1,17 @@
+Import('env')
+
+env.Prepend(CPPPATH=['#thirdparty/osc/thirdparty/osc'])
+env.Prepend(CPPPATH=['#thirdparty/osc/thirdparty/ip'])
+env.Prepend(CPPPATH=['#thirdparty/osc/thirdparty'])
+env.Prepend(CPPPATH=['#thirdparty/osc'])
+
+env_thirdparty = env.Clone()
+env_thirdparty.disable_warnings()
+env_thirdparty.add_source_files(env.modules_sources, "thirdparty/osc/*.cpp")
+env_thirdparty.add_source_files(env.modules_sources, "thirdparty/ip/*.cpp")
+if env["platform"] == "windows":
+    env_thirdparty.add_source_files(env.modules_sources, "thirdparty/ip/win32/*.cpp")
+else:
+    env_thirdparty.add_source_files(env.modules_sources, "thirdparty/ip/posix/*.cpp")
+
+env.add_source_files(env.modules_sources, "*.cpp") # Add all cpp files to the build

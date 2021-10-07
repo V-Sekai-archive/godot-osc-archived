@@ -11,8 +11,6 @@
 
 #include "oscmsg.h"
 
-using namespace osc;
-
 void oscmsg::_register_methods() {
     register_method("buffer_size", &oscmsg::buffer_size);
     register_method("address", &oscmsg::address);
@@ -55,7 +53,7 @@ void oscmsg::reset() {
 void oscmsg::buffer_size(int size) {
 
     if (size <= 0) {
-        godot::Godot::print("oscmsg::buffer_size, wrong buffer_size!");
+        print_line("oscmsg::buffer_size, wrong buffer_size!");
         return;
     }
 
@@ -65,7 +63,7 @@ void oscmsg::buffer_size(int size) {
 
 }
 
-void oscmsg::address(godot::String address) {
+void oscmsg::address(String address) {
 
     reset();
 
@@ -79,69 +77,69 @@ void oscmsg::address(godot::String address) {
 
 }
 
-void oscmsg::add(godot::Variant var) {
+void oscmsg::add(Variant var) {
 
     if (!_packet) {
-        godot::Godot::print("oscmsg::add, message is not ready! "
+        print_line("oscmsg::add, message is not ready! "
                 "call 'address' first!");
         return;
     }
 
     switch (var.get_type()) {
-        case godot::Variant::Type::BOOL:
+        case Variant::Type::BOOL:
         {
             bool b = var;
             (*_packet) << b;
         }
             break;
-        case godot::Variant::Type::STRING:
-        case godot::Variant::Type::NODE_PATH:
-        case godot::Variant::Type::_RID:
-        case godot::Variant::Type::OBJECT:
+        case Variant::Type::STRING:
+        case Variant::Type::NODE_PATH:
+        case Variant::Type::_RID:
+        case Variant::Type::OBJECT:
         {
-            godot::String s = var;
+            String s = var;
             (*_packet) << s.alloc_c_string();
         }
             break;
-        case godot::Variant::Type::INT:
+        case Variant::Type::INT:
         {
             int i = var;
             (*_packet) << i;
         }
             break;
-        case godot::Variant::Type::REAL:
+        case Variant::Type::REAL:
         {
             float f = var;
             (*_packet) << f;
         }
             break;
-        case godot::Variant::Type::VECTOR2:
+        case Variant::Type::VECTOR2:
         {
-            godot::Vector2 v = var;
+            Vector2 v = var;
             (*_packet) << float( v.x);
             (*_packet) << float( v.y);
         }
             break;
-        case godot::Variant::Type::VECTOR3:
+        case Variant::Type::VECTOR3:
         {
-            godot::Vector3 v = var;
+            Vector3 v = var;
             (*_packet) << float( v.x);
             (*_packet) << float( v.y);
             (*_packet) << float( v.z);
         }
             break;
-        case godot::Variant::Type::QUAT:
+        case Variant::Type::QUAT:
         {
-            godot::Quat q = var;
+            Quat q = var;
             (*_packet) << float( q.x);
             (*_packet) << float( q.y);
             (*_packet) << float( q.z);
             (*_packet) << float( q.w);
         }
             break;
-        case godot::Variant::Type::COLOR:
+        case Variant::Type::COLOR:
         {
-            godot::Color c = var;
+            Color c = var;
             (*_packet) << float( c.r);
             (*_packet) << float( c.g);
             (*_packet) << float( c.b);
@@ -149,7 +147,7 @@ void oscmsg::add(godot::Variant var) {
         }
             break;
         default:
-            godot::Godot::print("oscsender::add, unable to add "
+            print_line("oscsender::add, unable to add "
                     "this kind of data!");
             break;
 

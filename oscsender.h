@@ -1,0 +1,61 @@
+// /*
+//  * See the LICENSE file at the root directory for license information
+//  */
+
+// /*
+//  * File:   oscsender.h
+//  * Author: frankiezafe
+//  *
+//  * Created on December 10, 2018, 1:21 PM
+//  */
+
+// #ifndef OSCSENDER_H
+// #define OSCSENDER_H
+
+// #include "osc/oscmsg.h"
+
+// #include "scene/main/node.h"
+
+//     class oscsender : public Node {
+//         GDCLASS(oscsender, Node);
+
+//     public:
+
+//         static void _register_methods();
+
+//         oscsender();
+
+//         virtual ~oscsender();
+
+//         bool setup(godot::String ip, unsigned int port);
+
+//         bool start();
+
+//         void stop();
+
+//         void msg( godot::String address );
+
+//         void add( godot::Variant var );
+
+//         void send();
+
+//     protected:
+
+//         std::string _ip;
+//         int _port;
+//         std::size_t _buffer_size;
+//         godot::String _endpoint;
+//         bool _ready;
+//         bool _running;
+
+//         UdpTransmitSocket* _socket;
+
+//         char* _buffer;
+//         osc::OutboundPacketStream* _packet;
+//         bool _packet_closed;
+
+//         void reset_message();
+
+//     };
+
+// #endif /* OSCSENDER_H */
